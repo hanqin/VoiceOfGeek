@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="mood_templates_ids">
+        <item>@string/feedback_template_satisfied</item>
+        <item>@string/feedback_template_normal</item>
+        <item>@string/feedback_template_dissatisfied</item>
+    </integer-array>
+</resources>

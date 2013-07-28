@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VoiceOfGeek</string>
+    <string name="feedback_button">Feedback!</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="feedback_dialog_title">I have to say…</string>
+    <string name="feedback_template_normal">
+        Well, I would rate you 5 stars.\nI like the %s.\nHowever, I still need to point out
+        that…\nGlad to help if you have any questions.
+    </string>
+    <string name="feedback_template_dissatisfied">
+        Frankly, I won\'t rate you 5 stars unless I can see the quick fix for the problem that…\nI
+        am still in favour of the %s, just keep it up.\nGlad to help if you have any questions.
+    </string>
+    <string name="feedback_template_satisfied">
+        Awesome, I will definitely rate you 5 stars.\nI love the %s.\nBesides, May I request a new
+        feature
+        that…\nGlad to help if you have any questions.
+    </string>
+    <string name="mood_label_text">I feel</string>
+    <string-array name="moods">
+        <item>I feel happy</item>
+        <item>I feel nothing special</item>
+        <item>I feel disappointed</item>
+    </string-array>
+</resources>

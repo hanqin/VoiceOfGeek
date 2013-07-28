@@ -1,0 +1,6 @@
+.idea
+VoiceOfGeek.iml
+gen/
+out
+local.properties
+bin/
