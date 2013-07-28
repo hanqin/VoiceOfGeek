@@ -4,15 +4,19 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.twers.voiceofus.events.EventListFragment;
 import com.twers.voiceofus.feedback.ProvideFeedbackDialog;
+import com.twers.voiceofus.recommendations.EditorsChoiceFragment;
 import com.twers.voiceofus.util.SystemUiHider;
 
-public class TwersCodesActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
+public class TwersCodesActivity extends SherlockFragmentActivity {
     private static final boolean AUTO_HIDE = true;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
     private static final boolean TOGGLE_ON_CLICK = true;
@@ -27,7 +31,6 @@ public class TwersCodesActivity extends SherlockFragmentActivity implements Acti
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +41,58 @@ public class TwersCodesActivity extends SherlockFragmentActivity implements Acti
         initFeedbackSystem(contentView);
 
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        buildTab(0);
+
+        addGithubEventsTab();
+        addEditorsChoiceTab();
     }
 
-    private void buildTab(int i) {
+    private void addEditorsChoiceTab() {
+        final Fragment editorsChoice = Fragment.instantiate(getApplicationContext(), EditorsChoiceFragment.class.getName());
+
         ActionBar.Tab tab = getSupportActionBar().newTab();
-        tab.setText("Tab " + i);
-        tab.setTabListener(this);
+        tab.setText("Editor's Choice");
+        tab.setTabListener(new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                Toast.makeText(TwersCodesActivity.this, "tab " + tab.getText(), 300).show();
+                ft.add(R.id.fullscreen_content, editorsChoice);
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+                ft.detach(editorsChoice);
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+            }
+        });
+        getSupportActionBar().addTab(tab);
+    }
+
+    private void addGithubEventsTab() {
+        final Fragment eventList = Fragment.instantiate(getApplicationContext(), EventListFragment.class.getName());
+
+        ActionBar.Tab tab = getSupportActionBar().newTab();
+        tab.setText("Github Events");
+        tab.setTabListener(new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                Toast.makeText(TwersCodesActivity.this, "tab " + tab.getText(), 300).show();
+                ft.add(R.id.fullscreen_content, eventList);
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+                ft.detach(eventList);
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+            }
+        });
         getSupportActionBar().addTab(tab);
     }
 
@@ -87,21 +135,6 @@ public class TwersCodesActivity extends SherlockFragmentActivity implements Acti
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
     }
 
     private class SystemUiVisibilityChangeListener implements SystemUiHider.OnVisibilityChangeListener {
