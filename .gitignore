@@ -1,6 +1,8 @@
 .idea
-VoiceOfGeek.iml
+*.iml
 gen/
 out
+bin
 local.properties
 bin/
+.DS_Store
